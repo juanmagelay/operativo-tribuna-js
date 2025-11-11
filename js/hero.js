@@ -59,6 +59,10 @@ class Hero extends GameObject {
         this.fsm.addState('jump', {
             onEnter() {
                 console.log('Jump started!');
+
+                // Play jump sound
+                soundManager.playJump();    
+                
                 this.isJumping = true;
                 this.jumpStartY = this.position.y;
                 this.jumpElapsed = 0;
@@ -88,6 +92,9 @@ class Hero extends GameObject {
             onEnter() {
                 console.log('HERO DIED! onEnter executed');
                 console.log('Position before:', { x: this.position.x, y: this.position.y });
+                
+                // Play death sound immediately when health reaches 0
+                soundManager.playDead();
                 
                 this.inputEnabled = false;
                 this.velocity.x = 0;
@@ -134,8 +141,18 @@ class Hero extends GameObject {
 
     _onKeyX() {
         if (!this.game || !this.game.placeToilet) return;
+
+        // If no toilets left, do nothing
+        if (this.game.toiletCount <= 0) {
+            // Play error sound
+            soundManager.playError();
+            return;
+        }
         
-        //Place a toilet at hero's current world position
+        // Play put item sound
+        soundManager.playPutItem();
+
+        // Place a toilet at hero's current world position
         this.game.placeToilet({ x: this.position.x, y: this.position.y });
     }
 

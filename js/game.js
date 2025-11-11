@@ -272,19 +272,26 @@ class Game {
     if (this.toiletCountText) this.toiletCountText.text = `x ${this.toiletCount}`; 
   }
 
-  _applyHeroDamage(amount) {
+_applyHeroDamage(amount) {
     this.health = Math.max(0, this.health - amount);
     this._updateHealthBar();
+    
     const hero = this._getHero();
     const anim = hero && hero.currentAnimation ? hero.currentAnimation : '(no-anim)';
     console.log(`_applyHeroDamage: health=${this.health.toFixed(2)}, heroAnim=${anim}`);
+    
     if (this.health <= 0 && hero) {
+      // Death - don't play damage sound
       try {
-        if (hero.fsm && typeof hero.fsm.setState === 'function') hero.fsm.setState('dead');
-        if (typeof hero.changeAnimation === 'function') hero.changeAnimation('death');
+        if (hero.fsm && typeof hero.fsm.setState === 'function') {
+            hero.fsm.setState('dead');
+        }
       } catch (e) { /* ignore */ }
+    } else {
+      // If not dead, play damage sound with throttling
+      soundManager.playDamage();
     }
-  }
+}
 
   _getHero() { 
     return this.characters.find(c => c instanceof Hero) || null; 
