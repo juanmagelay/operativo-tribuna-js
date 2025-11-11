@@ -3,6 +3,10 @@
 class GameWithOverlay extends Game {
   constructor() {
     super();
+    
+    // Init Sound Manager
+    soundManager.init();
+
     this.overlay = new GameMenuOverlay(this);
     this._gameActive = false;
     this._onboardingActive = false;

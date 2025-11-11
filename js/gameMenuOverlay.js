@@ -47,6 +47,10 @@ class GameMenuOverlay {
     // Create button element
     this.button = document.createElement('button');
     Object.assign(this.button.style, TEXT_STYLES.overlayButton);
+
+    // Event listener for sound
+    this.button.addEventListener('click', () => soundManager.playUI());
+    
     this.overlay.appendChild(this.button);
   }
 
@@ -97,7 +101,12 @@ class GameMenuOverlay {
     this._renderOnboardingSlide();
     this.overlay.style.display = 'flex';
     this.button.textContent = 'Siguiente';
-    this.button.onclick = () => this._nextOnboardingSlide();
+
+    this.button.onclick = () => {
+      this._nextOnboardingSlide();
+      soundManager.playUI();
+    }
+    
     window.addEventListener('keydown', this._onboardingKeyHandler);
   }
 
