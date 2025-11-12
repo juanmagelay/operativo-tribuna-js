@@ -97,7 +97,7 @@ class GameMenuOverlay {
       },
       {
         img: 'images/onboarding-2.png',
-        text: `🚽 Pero hay algo que los tienta más… romper inodoros, y vos tenés varios.\n\n🎮 Usá las flechas del teclado para moverte y poné inodoros con la tecla X para distraerlos unos segundos.\n\n⏱️ Resistí el último minuto del partido. Si te sacan toda la vida antes, volás a la cancha y se pudre todo.`
+        text: `🚽 Pero hay algo que los tienta más… romper inodoros, y vos tenés varios.\n\n🎮 Usá las flechas del teclado para moverte y poné inodoros con la tecla X para distraerlos unos segundos. Podés saltar con la tecla Espacio.\n\n⏱️ Resistí el último minuto del partido. Si te sacan toda la vida antes, volás a la cancha y se pudre todo.`
       }
     ];
     

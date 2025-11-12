@@ -70,10 +70,13 @@ class Game {
     const heroSheetData = makeSpritesheetData(heroSheet);
     const hx = this.playArea.x + this.playArea.width;
     const hy = this.playArea.y + this.playArea.height * 0.5;
+    
     const hero = new Hero(heroSheetData, hx, hy, this);
     this.characters.push(hero);
+    
     const minEnemyDistance = 200;
-    for (let i = 0; i < 100; i++) {
+    
+    for (let i = 0; i < 250; i++) {
       let x, y, dist;
       do {
         x = this.playArea.x + Math.random() * this.playArea.width;
