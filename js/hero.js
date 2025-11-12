@@ -90,11 +90,11 @@ class Hero extends GameObject {
         // Dead state
         this.fsm.addState('dead', {
             onEnter() {
-                console.log('HERO DIED! onEnter executed');
-                console.log('Position before:', { x: this.position.x, y: this.position.y });
-                
                 // Play death sound immediately when health reaches 0
                 soundManager.playDead();
+                
+                console.log('HERO DIED! onEnter executed');
+                console.log('Position before:', { x: this.position.x, y: this.position.y });
                 
                 this.inputEnabled = false;
                 this.velocity.x = 0;

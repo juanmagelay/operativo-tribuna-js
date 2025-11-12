@@ -38,6 +38,10 @@ class GameWithOverlay extends Game {
     
     // Reset all characters using Game method
     this.resetAllCharacters();
+
+    // Stop menu/onboarding music and restart gameplay music
+    soundManager.stopAllMusic();
+    soundManager.startCrowd();
     
     // Start game immediately
     this._onboardingActive = false;

@@ -72,7 +72,7 @@ class GameMenuOverlay {
     this.title.textContent = '';
     this.button.textContent = 'Jugar';
     this.overlay.style.display = 'flex';
-    
+
     this._createLogoIfNeeded();
     this._showLogo();
     
@@ -85,6 +85,9 @@ class GameMenuOverlay {
 
   showOnboarding() {
     if (this._logoImg) this._logoImg.style.display = 'none';
+    
+    // Play background music for menu/onboarding
+    soundManager.startMuchachos();
     
     this._currentSlide = 0;
     this._slides = [
@@ -111,10 +114,12 @@ class GameMenuOverlay {
   }
 
   showGameOver() {
+    soundManager.stopAllMusic();
     this._showGameEnd('Perdiste');
   }
 
   showWin() {
+    soundManager.stopAllMusic();
     this._showGameEnd('Ganaste');
   }
 
@@ -238,6 +243,11 @@ class GameMenuOverlay {
     this.button.style.display = 'inline-block';
     this.overlay.style.flexDirection = 'column';
     window.removeEventListener('keydown', this._onboardingKeyHandler);
+    
+    // Stop menu/onboarding music and start gameplay music
+    soundManager.stopMuchachos();
+    soundManager.startCrowd();
+
     this.game._finishOnboarding();
   }
 
