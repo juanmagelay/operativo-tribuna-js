@@ -18,7 +18,7 @@ function checkCircleCollision(obj1, obj2, radius1, radius2) {
 }
 
 // Separate two objects in collision
-function separateObjects(obj1, obj2, radius1, radius2) {
+function separateObjects(obj1, obj2, radius1, radius2, objA, objB) {
   const dx = obj1.x - obj2.x;
   const dy = obj1.y - obj2.y;
   const distance = Math.sqrt(dx * dx + dy * dy);
@@ -38,6 +38,11 @@ function separateObjects(obj1, obj2, radius1, radius2) {
   obj1.y += separationY;
   obj2.x -= separationX;
   obj2.y -= separationY;
+
+  if((objA instanceof Hero || objB instanceof Hero) &&
+    (objA.isJumping || objB.isJumping)) {
+      console.log("Hero is jumping")
+    }
 }
 
 function limitVector(vector, maxMagnitude) {

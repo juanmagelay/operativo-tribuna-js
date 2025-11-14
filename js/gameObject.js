@@ -264,9 +264,14 @@ class GameObject {
     }
 
     _handleCollisions() {
+    if (this.isJumping) return;
     if (!this.isSolid) return;
     // Collision with other solid characters
     for (let other of this.game.characters) {
+      if (other.isJumping) {
+        console.log("is jumping"); 
+        return;
+      };
       if (other === this) continue;
       if (!other.isSolid) continue;
       const collision = checkCircleCollision(
@@ -297,7 +302,8 @@ class GameObject {
               this.position, 
               other.position, 
               this.collisionRadius, 
-              other.collisionRadius
+              other.collisionRadius,
+              this, other
             );
             this._resolveCollisionVelocity(other);
           }
@@ -308,7 +314,8 @@ class GameObject {
           this.position, 
           other.position, 
           this.collisionRadius, 
-          other.collisionRadius
+          other.collisionRadius,
+          this, other
         );
         this._resolveCollisionVelocity(other);
       }

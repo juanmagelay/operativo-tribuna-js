@@ -11,8 +11,8 @@ class Game {
   remainingSeconds = 60;
   _timerAccumulatorMs = 0;
   uiLayer;
-  health = 100;
-  maxHealth = 100;
+  health = Infinity;
+  maxHealth = Infinity;
   healthBarFill;
   toiletCount = 10;
   toiletIconSprite;
@@ -281,7 +281,7 @@ _applyHeroDamage(amount) {
     
     const hero = this._getHero();
     const anim = hero && hero.currentAnimation ? hero.currentAnimation : '(no-anim)';
-    console.log(`_applyHeroDamage: health=${this.health.toFixed(2)}, heroAnim=${anim}`);
+    //console.log(`_applyHeroDamage: health=${this.health.toFixed(2)}, heroAnim=${anim}`);
     
     if (this.health <= 0 && hero) {
       // Death - don't play damage sound
